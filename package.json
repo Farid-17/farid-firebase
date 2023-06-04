@@ -1,0 +1,26 @@
+{
+  "name": "farid-firebase",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Methods to make call to firebase database more easy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Farid-17/farid-firebase.git"
+  },
+  "keywords": [
+    "firebase"
+  ],
+  "author": "Hammani Farid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Farid-17/farid-firebase/issues"
+  },
+  "homepage": "https://github.com/Farid-17/farid-firebase#readme",
+  "dependencies": {
+    "firebase": "^9.22.1"
+  }
+}
