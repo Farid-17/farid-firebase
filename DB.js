@@ -1,4 +1,4 @@
-import { query, collection, doc, getDoc, getDocs, where, setDoc } from "firebase/firestore";
+import { query, collection, doc, getDoc, getDocs, where, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { getDB } from "./firebase-config.js";
 
 /**
@@ -40,10 +40,48 @@ export const _get = async (collectionName, idOrWhere = null) => {
 export const _save = async (data, collectionName, idOrWhere = null) => {
     const db = getDB(), idOrWhereType = typeof idOrWhere;
 
-    if (idOrWhereType == "object" && idOrWhere != null) {
-        await setDoc(doc(collection(db, collectionName), (data.id == undefined ? null : data.id)), data);
-    } else {
-        await setDoc(doc(collection(db, collectionName), (data.id == undefined ? null : data.id)), data);
+    try {
+        if (idOrWhereType == "object" && idOrWhere != null) {
+            let queryGenerated = query(collection(db, collectionName), ...getWhereArray(idOrWhere));
+            let querySnapshot = await getDocs(queryGenerated);
+            querySnapshot.forEach(async (doc) => {
+                await updateDoc(doc.ref, data);
+            });
+        } else if (idOrWhereType == "string" && idOrWhere != null) {
+            await updateDoc(doc(db, collectionName, idOrWhere), data);
+        } else {
+            if (data.id == undefined) {
+                await setDoc(doc(collection(db, collectionName)), data);
+            } else {
+                await setDoc(doc(db, collectionName, data.id), data);
+            }
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+export const _delete = async (collectionName, idOrWhere) => {
+    const db = getDB(), idOrWhereType = typeof idOrWhere;
+
+    try {
+        if (idOrWhereType == "object") {
+            let queryGenerated = query(collection(db, collectionName), ...getWhereArray(idOrWhere));
+            let querySnapshot = await getDocs(queryGenerated);
+            querySnapshot.forEach(async (doc) => {
+                await deleteDoc(doc.ref);
+            });
+        } else {
+            await deleteDoc(doc(db, collectionName, idOrWhere));
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
     }
 }
 

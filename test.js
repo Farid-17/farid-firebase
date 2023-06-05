@@ -1,5 +1,5 @@
 // import { setConfigs } from './firebase-config.js';
-import { _get } from './DB.js';
+import { _get, _save, _delete } from './DB.js';
 
 // setConfigs({
 //     apiKey: 'AIzaSyASYdv5Jl-VlI7S0FOscdAgD4FYjLsOt5Y',
@@ -11,7 +11,42 @@ import { _get } from './DB.js';
 //     measurementId: 'G-BZX5EKEQFL',
 // });
 
-let users = await _get('users');
+// console.log("Saved:", await _save({
+//     // id: "osidfhiosdbf",
+//     first: "farid",
+//     last: "ham",
+//     born: 1998,
+// }, 'users'));
+
+// console.log("Saved:", await _save({
+//     // id: "osidfhiosdbf",
+//     first: "farid",
+//     last: "ham2",
+//     born: 1998,
+// }, 'users', [
+//     {
+//         column: "first",
+//         value: "farid",
+//     },
+//     {
+//         column: "last",
+//         value: "ham",
+//     },
+// ]));
+
+// console.log("Deleted:", await _delete("users", "osidfhiosdbf"));
+// console.log("Deleted:", await _delete("users", [
+//     {
+//         column: "first",
+//         value: "farid",
+//     },
+//     {
+//         column: "last",
+//         value: "ham2",
+//     }
+// ]));
+
+// let users = await _get('users');
 // let users = await _get('users', 'hH40iNX5OnopHPsen8MB');
 // let users = await _get('users', [
 //     {
@@ -23,4 +58,4 @@ let users = await _get('users');
 //         value: "Lovelace",
 //     }
 // ]);
-console.log(users);
+// console.log(users);
