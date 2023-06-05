@@ -1,7 +1,7 @@
 {
   "name": "farid-firebase",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Methods to make call to firebase database more easy.",
   "main": "index.js",
   "scripts": {
