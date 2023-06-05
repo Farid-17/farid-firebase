@@ -1,5 +1,5 @@
 {
-  "name": "farid-firebase",
+  "name": "@farid-17/farid-firebase",
   "type": "module",
   "version": "1.0.0",
   "description": "Methods to make call to firebase database more easy.",
@@ -22,5 +22,6 @@
   "homepage": "https://github.com/Farid-17/farid-firebase#readme",
   "dependencies": {
     "firebase": "^9.22.1"
-  }
+  },
+  "devDependencies": {}
 }
