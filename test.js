@@ -1,4 +1,4 @@
-// import { setConfigs } from './firebase-config.js';
+// import { setConfigs } from './FirebaseConfig.js';
 // import { _get, _first, _save, _delete } from './DB.js';
 
 // setConfigs({

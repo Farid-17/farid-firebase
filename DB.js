@@ -1,5 +1,5 @@
 import { query, collection, doc, getDoc, getDocs, where, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { getDB } from "./firebase-config.js";
+import { getDB } from "./FirebaseConfig.js";
 
 /**
  * @param {string} collectionName
