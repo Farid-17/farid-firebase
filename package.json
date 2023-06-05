@@ -1,5 +1,5 @@
 {
-  "name": "@farid-17/farid-firebase",
+  "name": "farid-firebase",
   "type": "module",
   "version": "1.0.0",
   "description": "Methods to make call to firebase database more easy.",
