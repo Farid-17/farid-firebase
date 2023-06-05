@@ -1,5 +1,5 @@
 // import { setConfigs } from './firebase-config.js';
-import { _get, _save, _delete } from './DB.js';
+// import { _get, _first, _save, _delete } from './DB.js';
 
 // setConfigs({
 //     apiKey: 'AIzaSyASYdv5Jl-VlI7S0FOscdAgD4FYjLsOt5Y',
@@ -59,3 +59,15 @@ import { _get, _save, _delete } from './DB.js';
 //     }
 // ]);
 // console.log(users);
+
+// console.log(await _first("users", "hH40iNX5OnopHPsen8MB"));
+// console.log(await _first("users", [
+//     {
+//         column: "first",
+//         value: "Ada",
+//     },
+//     {
+//         column: "last",
+//         value: "Lovelace",
+//     },
+// ]));

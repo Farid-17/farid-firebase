@@ -37,6 +37,46 @@ export const _get = async (collectionName, idOrWhere = null) => {
     }
 }
 
+/**
+ * @param {string} collectionName
+ * @param {object, string, null} idOrWhere
+ * @returns {Promise}
+ */
+export const _first = async (collectionName, idOrWhere) => {
+    try {
+        const db = getDB(), idOrWhereType = typeof idOrWhere;
+        let querySnapshot;
+
+        if (idOrWhereType == "object") {
+            let queryGenerated = query(collection(db, collectionName), ...getWhereArray(idOrWhere));
+            querySnapshot = await getDocs(queryGenerated);
+        } else {
+            querySnapshot = await getDoc(doc(db, collectionName, idOrWhere));
+        }
+
+        let data;
+        if (idOrWhereType == "object") {
+            querySnapshot.forEach((doc) => {
+                data = getDocumentData(doc.data(), doc.id);
+                return;
+            });
+        } else {
+            data = getDocumentData(querySnapshot.data(), idOrWhere);
+        }
+
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+/**
+ * @param {object} data
+ * @param {string} collectionName
+ * @param {object, string, null} idOrWhere
+ * @returns {boolean}
+ */
 export const _save = async (data, collectionName, idOrWhere = null) => {
     const db = getDB(), idOrWhereType = typeof idOrWhere;
 
@@ -64,6 +104,11 @@ export const _save = async (data, collectionName, idOrWhere = null) => {
     }
 }
 
+/**
+ * @param {string} collectionName
+ * @param {object, string} idOrWhere
+ * @returns {boolean}
+ */
 export const _delete = async (collectionName, idOrWhere) => {
     const db = getDB(), idOrWhereType = typeof idOrWhere;
 
