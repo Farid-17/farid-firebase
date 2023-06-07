@@ -1,7 +1,12 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import firebaseConfigs from "./configs.js";
+import { fileURLToPath } from 'url';
+import path from 'path';
 import fs from 'fs';
+
+const f_filename = fileURLToPath(import.meta.url);
+const f_dirname = path.dirname(f_filename);
 
 /**
  * @param {object} configs
@@ -15,14 +20,14 @@ import fs from 'fs';
  * @returns {object}
  */
 export const setConfigs = (configs) => {
-    fs.readFile('./configs.js', 'utf8', function (err, data) {
+    fs.readFile(`${f_dirname}/configs.js`, 'utf8', function (err, data) {
         if (err) {
             return console.error(err);
         }
         let replacement = `export default ${getObjectString(configs)}`;
         var result = replaceFromToString(data, replacement, 'export default {', '}');
 
-        fs.writeFile('./configs.js', result, 'utf8', function (err) {
+        fs.writeFile(`${f_dirname}/configs.js`, result, 'utf8', function (err) {
             if (err) return console.log(err);
         });
     });
